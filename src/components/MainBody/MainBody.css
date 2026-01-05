@@ -1,0 +1,12 @@
+.main_body{
+    display: flex;
+    min-height: 100vh;
+}
+.side_menu{
+    flex: 1;
+    background-color: var(--side-color);
+}
+
+.router_content{
+    flex: 5;
+}

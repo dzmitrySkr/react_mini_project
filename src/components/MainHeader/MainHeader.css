@@ -1,0 +1,49 @@
+
+.main_header {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    color: var(--main-text-colored);
+    font-size: 1em;
+    font-family: sans-serif;
+    letter-spacing: 0.2em;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 18px;
+
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    letter-spacing:normal;
+    font-size: 0.8em;
+}
+
+.profileLogo {
+    width: 12px;
+    height: 12px;
+    background-image: url('../../images/Vector.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+
+.profileName {
+    margin-right: 10px;
+}
+
+.profileArr {
+    width: 10px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2px;
+    transform: rotate(45deg);
+}
