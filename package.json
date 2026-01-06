@@ -15,6 +15,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "@react-google-maps/api": "^2.20.8",
     "@reduxjs/toolkit": "^2.11.2",
     "acorn": "^8.15.0",
     "acorn-import-phases": "^1.0.4",

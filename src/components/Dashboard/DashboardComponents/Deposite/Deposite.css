@@ -1,0 +1,59 @@
+.deposite_content{
+    display: flex;
+
+}
+.deposite_main{
+    background: #ababab;
+}
+.deposite_side_info, .deposite_map_info{
+    flex: 1;
+}
+
+.deposite_summary, .deposite_ammount, .deposite_map_info{
+    margin:10px;
+    background-color: #fdfdfd;
+    padding: 10px;
+}
+
+.deposite_title_text{
+    color: #4E80D1;
+    padding: 13px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.deposite_ammount_title, .deposite_summary_title{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.card_number_title{
+    font-size: 14px;
+    color: #6c6c6c;
+}
+
+.card_number_wrapp{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: flex-end;
+    font-weight:500;
+}
+
+.card_number_content{
+    font-size: 16px;
+    color: #383838;
+    margin-left: 10px;
+}
+
+.deposite_summary_text{
+    padding: 3px;
+    border: 1px solid #465fff;
+    color: #1c57e1;
+    width: 70px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+}
+

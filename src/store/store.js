@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { dummyApi } from './dymmyApi';
 import productsUiSlice from "./ProducSlicer";
+import modalSlice from "./ModalSlicer";
 
 export const store = configureStore({
     reducer: {
         [dummyApi.reducerPath]: dummyApi.reducer,
         productsUi: productsUiSlice,
+        modal:modalSlice,
 
     },
     middleware: (getDefaultMiddleware) =>

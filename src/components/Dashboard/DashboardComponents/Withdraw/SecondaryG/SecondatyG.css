@@ -1,0 +1,58 @@
+.secondary_image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15%;
+    width: 15%;
+    overflow: hidden;
+}
+
+.secondary_graf{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.secondary_image img{
+    width: 100%;
+    object-position: center;
+}
+
+.analyse_button{
+    width: 120px;
+    height: 35px;
+    background-color: white;
+    border: 1px solid #4a4aff;
+    color: #4a4aff;
+}
+
+.analyse_button:hover{
+    background-color: #e8e8ff;
+}
+
+.analyse_button:active{
+    background-color: #c2c2fa;
+}
+
+.secondary_main_slogan{
+    font-size: 38px;
+}
+
+.secondary_slogan{
+    font-size: 12px;
+}
+
+.secondary_graf.reject .secondary_image{
+    height: 55%;
+    width: 55%;
+}
+
+.secondary_graf.reject{
+    position: relative;
+}
+
+.secondary_graf.reject .secondary_main_slogan{
+    position: absolute;
+    bottom: 50%;
+}
