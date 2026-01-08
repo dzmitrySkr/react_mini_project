@@ -1,6 +1,6 @@
 import GoogleMapView from './GoogleMap/GoogleMapView'
 import CardModal from "./CardModal/CardModal";
-import Summary from "./depositeComponents/summary";
+import Summary from "./depositeComponents/Summary";
 import Ammount from "./depositeComponents/Ammount";
 import "./Deposite.css"
 
