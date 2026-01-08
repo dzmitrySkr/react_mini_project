@@ -1,7 +1,7 @@
 import GoogleMapView from './GoogleMap/GoogleMapView'
 import CardModal from "./CardModal/CardModal";
-import Summary from "./depositeComponents/Summary";
-import Ammount from "./depositeComponents/Ammount";
+import Summary from "./DepositeComponents/Summary";
+import Ammount from "./DepositeComponents/Ammount";
 import "./Deposite.css"
 
 let Deposite = () =>{
