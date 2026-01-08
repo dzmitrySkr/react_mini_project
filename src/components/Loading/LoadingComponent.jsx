@@ -1,5 +1,9 @@
-let LoadingComponent = () =>{
-    return <div>Loading...</div>
+import "./loading.css"
+
+let LoadingComponent = () => {
+    return <div className="container">
+        <div className="loader"></div>
+    </div>
 }
 
 export default LoadingComponent

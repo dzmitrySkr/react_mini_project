@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { dummyApi } from './dymmyApi';
+import { dummyApi } from './DymmyApi';
 import productsUiSlice from "./ProducSlicer";
 import modalSlice from "./ModalSlicer";
 

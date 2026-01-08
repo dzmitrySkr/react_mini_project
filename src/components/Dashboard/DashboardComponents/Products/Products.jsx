@@ -1,45 +1,18 @@
-import {useGetProductsQuery} from "../../../../store/dymmyApi";
+import {useGetProductsQuery} from "../../../../store/DymmyApi";
 import {useDispatch, useSelector} from "react-redux";
-import { setSearch, setLimit, setPage } from "../../../../store/ProducSlicer";
+import { setSearch } from "../../../../store/ProducSlicer";
 import {ProductItem} from "./ProductItem";
 import "./Products.css"
-import { useEffect, useState } from "react";
+import Pagination from "./Pagination";
 
 
 let Products = () => {
-    const dispatch = useDispatch();
+
     const search = useSelector((store) => store.productsUi.search);
     const limit = useSelector((store) => store.productsUi.limit);
     const page = useSelector((store) => store.productsUi.page);
-
-    const [pageInput, setPageInput] = useState(page);
-
+    const dispatch = useDispatch();
     let { data, isLoading } = useGetProductsQuery({ limit, search, page });
-    const totalPages = Math.ceil((data?.total || 0) / limit);
-
-    const onPageInputKeyDown = (e) => {
-        if (e.key !== "Enter") return;
-        e.target.blur();
-        let value = Number(pageInput);
-
-        if (!value) return;
-        if (value < 1) value = 1;
-        if (value > totalPages) value = totalPages;
-
-        dispatch(setPage(value));
-    };
-
-    const onBlur = () => {
-        dispatch(setPage(Number(pageInput)));
-    };
-
-    useEffect(() => {
-        setPageInput(page);
-    }, [page]);
-
-    const onPageInputChange = (e) => {
-        setPageInput(e.target.value);
-    };
 
     return (
         <div className="page_wrapper">
@@ -75,50 +48,12 @@ let Products = () => {
                         </table>
                     </div>
                 ) : (
-                    <div>Ничего не найдено</div>
+                    <div>Not found</div>
                 )}
             </main>
 
-            <footer className="list_footer">
-                <div className="list_pagination">
-                    <button
-                        className="left"
-                        disabled={page === 1}
-                        onClick={() => dispatch(setPage(page - 1))}
-                    >
-                        ←
-                    </button>
-                    <input
-                        type="number"
-                        className="current"
-                        value={pageInput}
-                        onChange={onPageInputChange}
-                        onKeyDown={onPageInputKeyDown}
-                        onBlur={onBlur}
-                    />
-                    <button
-                        className="right"
-                        disabled={page === totalPages}
-                        onClick={() => dispatch(setPage(page + 1))}
-                    >
-                        →
-                    </button>
-                    <div className="total_pages">Всего страниц: {totalPages}</div>
-                </div>
+        <Pagination/>
 
-                <div className="list_amount">
-                    <label htmlFor="amount-select">Продуктов на странице:</label>
-                    <select
-                        id="amount-select"
-                        value={limit}
-                        onChange={(e) => dispatch(setLimit(Number(e.target.value)))}
-                    >
-                        <option value={10}>10</option>
-                        <option value={15}>15</option>
-                        <option value={20}>20</option>
-                    </select>
-                </div>
-            </footer>
         </div>
     );
 };
