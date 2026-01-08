@@ -101,7 +101,26 @@ tr{
 
 .list_amount {
     margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
 }
+
+.list_amount label{
+    margin-top: 4px;
+    line-height: 15px;
+}
+
+.list_amount select{
+    border: none;
+    background-color: unset;
+}
+
+.list_amount select:focus-visible{
+    border: none;
+    background-color: unset;
+}
+
 
 .list_amount select {
     margin-left: 8px;
@@ -117,6 +136,7 @@ tr{
     font-size: 12px;
     margin-bottom: 20px;
 }
+
 
 @media (max-width: 768px) {
     .products_table th, .products_table td,

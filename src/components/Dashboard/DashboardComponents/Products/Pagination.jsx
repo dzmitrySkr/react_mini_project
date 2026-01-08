@@ -1,85 +1,71 @@
-import {setLimit, setPage} from "../../../../store/ProducSlicer";
-import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useGetProductsQuery} from "../../../../store/DymmyApi";
+import { usePagination } from "../../../../hooks/usePagination";
 
-let Pagination =()=> {
-    const dispatch = useDispatch();
-    const search = useSelector((store) => store.productsUi.search);
-    const limit = useSelector((store) => store.productsUi.limit);
-    const page = useSelector((store) => store.productsUi.page);
-    const [pageInput, setPageInput] = useState(page);
+const Pagination = () => {
+    const {
+        page,
+        limit,
+        totalPages,
+        pageInput,
+        isLoading,
+        setPageInput,
+        changePage,
+        changeLimit,
+    } = usePagination();
 
-    let { data, isLoading } = useGetProductsQuery({ limit, search, page });
+    return (
+        <footer className="list_footer">
+            <div className="list_pagination">
+                <button
+                    className="left"
+                    disabled={page === 1 || isLoading}
+                    onClick={() => changePage(page - 1)}
+                >
+                    ←
+                </button>
 
-    useEffect(() => {
-        setPageInput(page);
-    }, [page]);
+                <input
+                    type="number"
+                    className="current"
+                    value={pageInput}
+                    disabled={isLoading}
+                    onChange={(e) => setPageInput(e.target.value)}
+                    onBlur={() => changePage(pageInput)}
+                    onKeyDown={(e) => e.key === "Enter" && e.target.blur()}
+                />
 
+                <button
+                    className="right"
+                    disabled={page === totalPages || isLoading}
+                    onClick={() => changePage(page + 1)}
+                >
+                    →
+                </button>
 
-    const totalPages = Math.ceil((data?.total || 0) / limit);
+                <div className="total_pages">
+                    Pages: {totalPages}
+                </div>
+            </div>
 
-    const onPageInputChange = (e) => {
-        setPageInput(e.target.value);
-    };
+            <div className="list_amount">
+                <label htmlFor="amount-select">
+                    Products on the page:
+                </label>
 
-    const onBlur = () => {
-        dispatch(setPage(Number(pageInput)));
-    };
-
-    const onPageInputKeyDown = (e) => {
-        if (e.key !== "Enter") return;
-        e.target.blur();
-        let value = Number(pageInput);
-
-        if (!value) return;
-        if (value < 1) value = 1;
-        if (value > totalPages) value = totalPages;
-
-        dispatch(setPage(value));
-    };
-
-
-    return <footer className="list_footer">
-        <div className="list_pagination">
-            <button
-                className="left"
-                disabled={page === 1}
-                onClick={() => dispatch(setPage(page - 1))}
-            >
-                ←
-            </button>
-            <input
-                type="number"
-                className="current"
-                value={pageInput}
-                onChange={onPageInputChange}
-                onKeyDown={onPageInputKeyDown}
-                onBlur={onBlur}
-            />
-            <button
-                className="right"
-                disabled={page === totalPages}
-                onClick={() => dispatch(setPage(page + 1))}
-            >
-                →
-            </button>
-            <div className="total_pages">Pages: {totalPages}</div>
-        </div>
-
-        <div className="list_amount">
-            <label htmlFor="amount-select">Products on the page:</label>
-            <select
-                id="amount-select"
-                value={limit}
-                onChange={(e) => dispatch(setLimit(Number(e.target.value)))}
-            >
-                <option value={10}>10</option>
-                <option value={15}>15</option>
-                <option value={20}>20</option>
-            </select>
-        </div>
-    </footer>
-}
+                <select
+                    id="amount-select"
+                    value={limit}
+                    disabled={isLoading}
+                    onChange={(e) =>
+                        changeLimit(Number(e.target.value))
+                    }
+                >
+                    <option value={10}>10</option>
+                    <option value={15}>15</option>
+                    <option value={20}>20</option>
+                </select>
+            </div>
+        </footer>
+    );
+};
 
 export default Pagination;
