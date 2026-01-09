@@ -74,6 +74,9 @@ dist/
 - Publish directory: `dist`
 
 ### netlify.toml
+Приложение будет доступно по адресу:
+https://iproject2.netlify.app/
+
 ```toml
 [build]
   command = "npm run build"
