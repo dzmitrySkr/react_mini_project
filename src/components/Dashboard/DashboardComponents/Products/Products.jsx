@@ -1,9 +1,10 @@
-import {useGetProductsQuery} from "../../../../store/DymmyApi";
+import {useGetProductsQuery} from "../../../../store/DummyApi";
 import {useDispatch, useSelector} from "react-redux";
-import { setSearch } from "../../../../store/ProducSlicer";
+import { setSearch } from "../../../../store/ProductSlicer";
 import {ProductItem} from "./ProductItem";
 import "./Products.css"
 import Pagination from "./Pagination";
+import LoadingComponent from "../../../Loading/LoadingComponent";
 
 
 let Products = () => {
@@ -12,26 +13,32 @@ let Products = () => {
     const limit = useSelector((store) => store.productsUi.limit);
     const page = useSelector((store) => store.productsUi.page);
     const dispatch = useDispatch();
-    let { data, isLoading } = useGetProductsQuery({ limit, search, page });
+    let { data, isLoading, error } = useGetProductsQuery({ limit, search, page });
 
     return (
         <div className="page_wrapper">
+            <div className="products_header">Products list</div>
 
-                <div className="products_header">Products list</div>
+            <div className="search_header">
+                <input
+                    value={search}
+                    onChange={(e) => dispatch(setSearch(e.target.value))}
+                    placeholder="Search"
+                />
+            </div>
 
-                <div className="search_header">
-                    <input
-                        value={search}
-                        onChange={(e) => dispatch(setSearch(e.target.value))}
-                        placeholder="Search"
-                    />
-                </div>
-                <main className="content">
-                {data?.products?.length ? (
+            <main className="content">
+                {isLoading ? (
+                    <LoadingComponent/>
+                ) : error ? (
+                    <div className="status_message error">
+                        {"Something went wrong, try later"}
+                    </div>
+                ) : data?.products?.length ? (
                     <div className="table_wrapper">
                         <table className="products_table">
                             <thead>
-                            <tr className={"white"}>
+                            <tr className="white">
                                 <th className="th_id">ID</th>
                                 <th className="th_title">Название</th>
                                 <th className="th_category">Категория</th>
@@ -48,12 +55,11 @@ let Products = () => {
                         </table>
                     </div>
                 ) : (
-                    <div>Not found</div>
+                    <div className="status_message">Not found</div>
                 )}
             </main>
 
-        <Pagination/>
-
+            <Pagination />
         </div>
     );
 };

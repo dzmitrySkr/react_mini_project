@@ -17,7 +17,6 @@ let Ammount = () =>{
                 <div className="card_number_title">Owner:</div>
                 <div className="card_number_content">{"no data"}</div>
             </div>
-            {/*<div className="deposite_summary_text" onClick={() => dispatch(openModal())}>edit</div>*/}
         </div>
     </>
 }

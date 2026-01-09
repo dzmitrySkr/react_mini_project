@@ -15,9 +15,10 @@ const MINSK_CENTER = {
 
 let GoogleMapView = () => {
     const { isLoaded } = useJsApiLoader({
-        googleMapsApiKey: "AIzaSyDS8QYzciy-YBxm6EKhN70v_8pfORWgqLk",
-    });
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
 
+    });
+    console.log(process.env.REACT_APP_GOOGLE_API_KEY)
     if (!isLoaded) return <div>Загрузка карты...</div>;
 
     return (

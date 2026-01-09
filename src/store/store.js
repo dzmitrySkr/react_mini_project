@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { dummyApi } from './DymmyApi';
-import productsUiSlice from "./ProducSlicer";
-import modalSlice from "./ModalSlicer";
+import { dummyApi } from './DummyApi';
+import productsUiSlice from "./ProductSlicer";
+import modalSlice, {saveUserMiddleWare}from "./ModalSlicer";
 
 export const store = configureStore({
     reducer: {
@@ -11,5 +11,5 @@ export const store = configureStore({
 
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(dummyApi.middleware),
+        getDefaultMiddleware().concat(dummyApi.middleware).concat(saveUserMiddleWare),
 });

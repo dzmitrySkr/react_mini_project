@@ -32,6 +32,7 @@
     "colorette": "^2.0.20",
     "commander": "^2.20.3",
     "cross-spawn": "^7.0.6",
+    "dotenv": "^17.2.3",
     "electron-to-chromium": "^1.5.267",
     "enhanced-resolve": "^5.18.4",
     "envinfo": "^7.21.0",

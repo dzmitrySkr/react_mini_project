@@ -1,4 +1,4 @@
-import "./SecondatyG.css"
+import "./SecondaryG.css"
 
 let SecondaryGraf = ({img = "arr.png", mainSlogan = "none", slogan = "none", button = false })=>{
 

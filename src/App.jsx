@@ -1,4 +1,3 @@
-import React from 'react';
 import MainHeader from './components/MainHeader/MainHeader.jsx';
 import MainBody from './components/MainBody/MainBody.jsx';
 import "./App.css";
@@ -12,9 +11,7 @@ export default function App() {
         <div>
             <Provider store={store}>
             <MainHeader />
-            <RouterProvider router={mainRouters}>
-                <MainBody />
-            </RouterProvider>
+            <RouterProvider router={mainRouters}></RouterProvider>
             </Provider>
         </div>
     );

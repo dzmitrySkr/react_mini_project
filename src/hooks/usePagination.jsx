@@ -1,22 +1,14 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setLimit, setPage } from "../store/ProducSlicer";
-import { useGetProductsQuery } from "../store/DymmyApi";
+import { setLimit, setPage } from "../store/ProductSlicer";
+import { useGetProductsQuery } from "../store/DummyApi";
 
 export const usePagination = () => {
     const dispatch = useDispatch();
 
-    const search = useSelector((store) => store.productsUi.search);
-    const limit = useSelector((store) => store.productsUi.limit);
-    const page = useSelector((store) => store.productsUi.page);
-
+    const { search, limit, page } = useSelector((store) => store.productsUi);
     const [pageInput, setPageInput] = useState(page);
-
-    const { data, isLoading } = useGetProductsQuery({
-        limit,
-        search,
-        page,
-    });
+    const { data, isLoading } = useGetProductsQuery({limit, search, page,});
 
     const totalPages = Math.max(
         1,
@@ -27,20 +19,13 @@ export const usePagination = () => {
         setPageInput(page);
     }, [page]);
 
-    const applyPage = useCallback(
-        (value) => {
-            let pageNumber = Number(value);
+    const changePage = (value) => {
+        let pageNumber = Number(value);
 
-            if (!pageNumber || pageNumber < 1) pageNumber = 1;
-            if (pageNumber > totalPages) pageNumber = totalPages;
+        if (!pageNumber || pageNumber < 1) pageNumber = 1;
+        if (pageNumber > totalPages) pageNumber = totalPages;
 
-            dispatch(setPage(pageNumber));
-        },
-        [dispatch, totalPages]
-    );
-
-    const changePage = (newPage) => {
-        applyPage(newPage);
+        dispatch(setPage(pageNumber));
     };
 
     const changeLimit = (newLimit) => {
@@ -54,7 +39,6 @@ export const usePagination = () => {
         totalPages,
         pageInput,
         isLoading,
-
         setPageInput,
         changePage,
         changeLimit,

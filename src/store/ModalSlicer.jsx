@@ -1,18 +1,27 @@
-// features/card/cardSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
-const savedCard = localStorage.getItem("modalData");
+
+let initialDataModal = {
+    cardNumber: "",
+    expiry: "",
+    owner: "Gregorz Brzerzenszchykewich",
+}
+
+let savedCard;
+try {
+    savedCard = JSON.parse(localStorage.getItem("modalData"));
+} catch {
+    savedCard = null;
+}
+
+
 const initialState = {
     isModalOpen: false,
-    cardData: savedCard ? JSON.parse(savedCard) : {
-        cardNumber: "",
-        expiry: "",
-        owner: "Gregorz Brzerzenszchykewich",
-    },
+    cardData: savedCard || initialDataModal
 };
 
 const modalSlice = createSlice({
-    name: "card",
+    name: "modal",
     initialState,
     reducers: {
         openModal(state) {
@@ -23,10 +32,27 @@ const modalSlice = createSlice({
         },
         saveCardData(state, action) {
             state.cardData = action.payload;
-            localStorage.setItem("modalData", JSON.stringify(action.payload));
         },
     },
 });
+
+
+export const saveUserMiddleWare = (store) => (next) => (action) => {
+    const result = next(action);
+
+    if (action.type === "modal/saveCardData") {
+        try {
+            const state = store.getState();
+            localStorage.setItem("modalData", JSON.stringify(state.modal.cardData));
+        } catch (e) {
+            console.error("Failed to save card data", e);
+        }
+    }
+
+    return result;
+};
+
+
 
 export const { openModal, closeModal, saveCardData } = modalSlice.actions;
 export default modalSlice.reducer;
