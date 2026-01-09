@@ -4,6 +4,7 @@
 }
 .deposite_main{
     background: #ababab;
+    height: calc(100vh - 110px);
 }
 .deposite_side_info, .deposite_map_info{
     flex: 1;

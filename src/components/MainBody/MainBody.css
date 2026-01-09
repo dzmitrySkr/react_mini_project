@@ -1,6 +1,6 @@
 .main_body{
     display: flex;
-    min-height: 100vh;
+    min-height: calc(100vh - 50px);
 }
 .side_menu{
     flex: 1;

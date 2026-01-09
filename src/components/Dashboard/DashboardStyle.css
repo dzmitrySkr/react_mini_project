@@ -4,6 +4,7 @@
     flex-direction: column;
     background-color: #f9f9f9;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
 }
 
 .dashboard-tabs {

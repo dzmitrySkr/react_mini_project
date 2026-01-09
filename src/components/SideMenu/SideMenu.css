@@ -8,6 +8,10 @@
     font-size: 14px;
 }
 
+.side_menu{
+    z-index: 1;
+}
+
 .side_menu_item:hover{
     border: 1px solid #fdfdfd;
 
