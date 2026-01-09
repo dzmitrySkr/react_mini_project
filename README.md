@@ -1,6 +1,7 @@
 # NewApp
 
 React-приложение, собранное с использованием **Webpack 5**, **Babel** и **React Router**.
+Деплой: https://iproject2.netlify.app/
 
 ---
 
